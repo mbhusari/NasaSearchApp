@@ -21,7 +21,7 @@ protocol NetworkServiceProtocol {
 class DefaultNetworkService: NetworkServiceProtocol {
     func fetchSearchData(with endPoint: EndPoint, completon: @escaping ((Result<[Item], NetworkServiceError>) -> Void )) -> Cancellable? {
         
-        guard let url = endPoint.urlRequest() else {
+        guard let url = endPoint.url else {
             completon(.failure(.urlRegeneration))
             return nil
         }

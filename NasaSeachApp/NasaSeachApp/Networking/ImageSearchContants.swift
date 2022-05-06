@@ -7,5 +7,5 @@
 
 import Foundation
 
-var searchUrl = "https://images-api.nasa.gov/search?q=mars&media_type=image"
+var searchUrl = "https://images-api.nasa.gov/search"
 var urlRequestType = "GET"

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SearchImagesViewModelInOut {
-   func fetchSearchData()
+    func fetchSearchData(matching query: String,withCurrentPage page: Int)
 }
 
 protocol SearchImagesViewModelOutput {
@@ -45,9 +45,9 @@ class SearchImagesViewModel : SearchImagesViewModelOutput {
 }
 
 extension SearchImagesViewModel: SearchImagesViewModelInOut {
-    func fetchSearchData() {
+    func fetchSearchData(matching query: String,withCurrentPage page: Int) {
        
-        let _ = networkService.fetchSearchData(with: EndPoint()) { (result) in
+       let _ = networkService.fetchSearchData(with:.search(matching: query, page)) { (result) in
             switch result {
             case .success(let elements):
                 self.searchDataList = elements

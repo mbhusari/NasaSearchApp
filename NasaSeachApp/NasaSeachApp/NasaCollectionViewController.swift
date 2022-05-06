@@ -9,6 +9,10 @@ import UIKit
 
 private let reuseIdentifier = "searchCellIdentifier"
 var searchImagesViewModel : SearchImagesViewModel!
+var page: Int = 1
+var isPageRefreshing:Bool = false
+let maxPageCount = 100
+var query = ""
 
 class NasaCollectionViewController: UICollectionViewController, SearchImagesViewModelDelegate, UISearchBarDelegate {
     
@@ -19,21 +23,12 @@ class NasaCollectionViewController: UICollectionViewController, SearchImagesView
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        searchImagesViewModel.fetchSearchData()
+        searchImagesViewModel.fetchSearchData(matching: query, withCurrentPage: page)
     }
 }
 
 extension NasaCollectionViewController {
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -62,8 +57,25 @@ extension NasaCollectionViewController {
         return searchView
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print(searchBar.text!)
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if let searchQuery = searchBar.text {
+            query = searchQuery
+            page = 1
+            searchImagesViewModel.fetchSearchData(matching: query, withCurrentPage: page)
+        }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let lastItem = searchImagesViewModel.searchDataList.count - 1
+        if indexPath.row == lastItem {
+            if !isPageRefreshing {
+                isPageRefreshing = true
+                page += 1
+                if page <= maxPageCount {
+                    searchImagesViewModel.fetchSearchData(matching: query, withCurrentPage: page)
+                }
+            }
+        }
     }
 }
 
@@ -80,6 +92,7 @@ extension NasaCollectionViewController {
     func handleSearchDataFetch() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            isPageRefreshing = false
         }
     }
     

@@ -30,13 +30,13 @@ struct Item: Codable {
 // MARK: - Datum
 struct Datum: Codable {
     let datumDescription, title: String
-    let photographer: Photographer?
-    let keywords: [String]
-    let location: Location?
+    let photographer: String?
+    let keywords: [String]?
+    let location: String?
     let nasaID: String
     let mediaType: MediaType
     let dateCreated: String?
-    let center: Center
+    let center: String?
     let description508, secondaryCreator: String?
 
     enum CodingKeys: String, CodingKey {
@@ -51,21 +51,8 @@ struct Datum: Codable {
     }
 }
 
-enum Center: String, Codable {
-    case hq = "HQ"
-    case jpl = "JPL"
-}
-
-enum Location: String, Codable {
-    case marsPAUSA = "Mars, PA, USA"
-}
-
 enum MediaType: String, Codable {
     case image = "image"
-}
-
-enum Photographer: String, Codable {
-    case nasaBillIngalls = "NASA/Bill Ingalls"
 }
 
 // MARK: - ItemLink
