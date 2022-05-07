@@ -133,7 +133,6 @@
 		1FD5C39F2824CAFE00FC6000 /* SDAssociatedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD5C3292824CAFD00FC6000 /* SDAssociatedObject.m */; };
 		1FD5C3A02824CAFE00FC6000 /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = 1FD5C3362824CAFD00FC6000 /* Podfile.lock */; };
 		1FD5C3A22824DD2600FC6000 /* SearchDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD5C3A12824DD2600FC6000 /* SearchDetailsViewController.swift */; };
-		1FD5C3A528257D5F00FC6000 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD5C3A428257D5F00FC6000 /* SearchBarView.swift */; };
 		A41982BCFED5427575C825F5 /* Pods_NasaSeachAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2690E03F3405F7B63356F185 /* Pods_NasaSeachAppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -395,7 +394,6 @@
 		1FD5C3292824CAFD00FC6000 /* SDAssociatedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDAssociatedObject.m; sourceTree = "<group>"; };
 		1FD5C3362824CAFD00FC6000 /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = file; path = Podfile.lock; sourceTree = SOURCE_ROOT; };
 		1FD5C3A12824DD2600FC6000 /* SearchDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailsViewController.swift; sourceTree = "<group>"; };
-		1FD5C3A428257D5F00FC6000 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		2690E03F3405F7B63356F185 /* Pods_NasaSeachAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NasaSeachAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CB7C05741FAFBCB68A7DFE7 /* Pods-NasaSeachAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NasaSeachAppTests.release.xcconfig"; path = "Target Support Files/Pods-NasaSeachAppTests/Pods-NasaSeachAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		3E4B2F9C782580348E026744 /* Pods_NasaSeachApp_NasaSeachAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NasaSeachApp_NasaSeachAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -499,7 +497,6 @@
 			isa = PBXGroup;
 			children = (
 				1FD5C25A2824637600FC6000 /* SearchCollectionViewCell.swift */,
-				1FD5C3A428257D5F00FC6000 /* SearchBarView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1211,7 +1208,6 @@
 				1FD5C3712824CAFE00FC6000 /* UIImage+MultiFormat.m in Sources */,
 				1FD5C3652824CAFE00FC6000 /* SDAnimatedImageView.m in Sources */,
 				1FD5C3622824CAFE00FC6000 /* SDImageIOAnimatedCoder.m in Sources */,
-				1FD5C3A528257D5F00FC6000 /* SearchBarView.swift in Sources */,
 				1FD5C35F2824CAFE00FC6000 /* SDWebImageOperation.m in Sources */,
 				1FD5C2582824254200FC6000 /* SearchImagesViewModel.swift in Sources */,
 				1FD5C3632824CAFE00FC6000 /* UIImageView+HighlightedWebCache.m in Sources */,

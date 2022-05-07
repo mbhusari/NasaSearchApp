@@ -49,11 +49,8 @@ class DefaultNetworkService: NetworkServiceProtocol {
         
         task.resume()
         semaphore.wait()
-        return task
-        
+        return task        
     }
-    
-    
 }
 
 extension URLSessionTask: Cancellable {}

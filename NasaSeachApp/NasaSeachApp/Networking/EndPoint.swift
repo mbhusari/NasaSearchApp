@@ -34,29 +34,9 @@ extension EndPoint {
         components.host = "images-api.nasa.gov"
         components.path = path
         components.queryItems = queryItems
-
+        
         return components.url
     }
 }
 
 
-/*
-protocol EndPointProtocol {
-    var baseUrl: String { get set}
-    func urlRequest() -> URLRequest?
-}
-
-
-class EndPoint: EndPointProtocol {
-    
-    var baseUrl: String = searchUrl
-    
-    func urlRequest() -> URLRequest? {
-        let urlRequest = URLRequest(url: URL(string: baseUrl)!, timeoutInterval: Double.infinity)
-        return urlRequest
-    }
-}
- */
-  
-  
-  

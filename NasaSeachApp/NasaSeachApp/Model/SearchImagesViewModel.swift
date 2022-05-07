@@ -9,6 +9,7 @@ import Foundation
 
 protocol SearchImagesViewModelInOut {
     func fetchSearchData(matching query: String,withCurrentPage page: Int)
+    func fetchNextPageData(matching query: String,withCurrentPage page: Int)
 }
 
 protocol SearchImagesViewModelOutput {
@@ -45,6 +46,22 @@ class SearchImagesViewModel : SearchImagesViewModelOutput {
 }
 
 extension SearchImagesViewModel: SearchImagesViewModelInOut {
+    func fetchNextPageData(matching query: String, withCurrentPage page: Int) {
+        
+        let _ = networkService.fetchSearchData(with:.search(matching: query, page)) { [self] (result) in
+             switch result {
+             case .success(let elements):
+                 var appendedList: [Any] = self.searchDataList
+                 for element in elements {
+                     appendedList.append(element)
+                 }
+                 self.searchDataList = appendedList
+             case .failure(let err):
+                 self.error = err
+             }
+         }
+    }
+    
     func fetchSearchData(matching query: String,withCurrentPage page: Int) {
        
        let _ = networkService.fetchSearchData(with:.search(matching: query, page)) { (result) in
@@ -56,6 +73,5 @@ extension SearchImagesViewModel: SearchImagesViewModelInOut {
             }
         }
     }
-
 }
 

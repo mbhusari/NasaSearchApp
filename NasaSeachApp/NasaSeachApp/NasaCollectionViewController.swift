@@ -16,10 +16,13 @@ var query = ""
 
 class NasaCollectionViewController: UICollectionViewController, SearchImagesViewModelDelegate, UISearchBarDelegate {
     
+    @IBOutlet var searchBarView: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchImagesViewModel = SearchImagesViewModel(AppFlowDependencyContainer.shared.networkService, self)
-        self.title = searchImagesViewModel.title
+        searchBarView.delegate = self
+        navigationItem.titleView = searchBarView
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,21 +51,13 @@ extension NasaCollectionViewController {
              }
         
         let searchObj: Item = searchImagesViewModel.searchDataList[indexPath.row] as! Item
-        cell.fill(searchObj.links[0].href,searchObj.data[0].title)
+        cell.fill(searchObj)
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let searchView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "searchViewIdentifier", for: indexPath)
         return searchView
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if let searchQuery = searchBar.text {
-            query = searchQuery
-            page = 1
-            searchImagesViewModel.fetchSearchData(matching: query, withCurrentPage: page)
-        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -72,9 +67,17 @@ extension NasaCollectionViewController {
                 isPageRefreshing = true
                 page += 1
                 if page <= maxPageCount {
-                    searchImagesViewModel.fetchSearchData(matching: query, withCurrentPage: page)
+                    searchImagesViewModel.fetchNextPageData(matching: query, withCurrentPage: page)
                 }
             }
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let searchQuery = searchBar.text {
+            query = searchQuery
+            page = 1
+            searchImagesViewModel.fetchSearchData(matching: query, withCurrentPage: page)
         }
     }
 }
